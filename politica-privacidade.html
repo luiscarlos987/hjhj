@@ -1,0 +1,1162 @@
+<link rel="manifest" href="manifest.json">
+<script type="text/javascript" src="sw.js"></script>
+<style>
+    body {
+        background: #000 !important;
+    }
+</style>
+
+<script src="../code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    function isIOS() {
+        var ua = navigator.userAgent.toLowerCase();
+
+        //Lista de dispositivos que acessar
+        var iosArray = ['iphone', 'ipod'];
+
+        var isApple = false;
+
+        if (ua.includes('iphone') || ua.includes('ipod')) {
+            isApple = true
+        }
+
+        return isApple;
+    }
+</script>
+
+
+<style>
+    @media  only screen and (-webkit-min-device-pixel-ratio: 1) {
+
+        ::i-block-chrome,
+        .app-main {
+            margin-top: 100px !important;
+        }
+    }
+
+    .app-main {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        max-width: 600px;
+        margin-top: 0px;
+        margin-bottom: 50px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .app-main a {
+        text-decoration: none;
+    }
+
+    .app-main a:hover {
+        text-decoration: none;
+    }
+
+    .app-title {
+        display: flex;
+        align-items: self-end;
+        padding-bottom: 10px;
+    }
+
+    .app-title h1 {
+        color: rgba(0, 0, 0, .9);
+        padding-right: 5px;
+        font-weight: 600;
+        font-size: 1.3em;
+        margin: 0;
+        padding-top: 10px;
+    }
+
+    .app-title .app-title-desc {
+        color: rgba(0, 0, 0, .5);
+        padding-top: 6px;
+        font-size: .9em;
+    }
+
+
+    /* *************************************************************** */
+    /* Card Rifa em Destaque */
+    /* *************************************************************** */
+    .rifas {
+        background: #e4e4e4;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        position: absolute;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        min-height: 100vh;
+    }
+
+    .rifa-dark {
+        background-color: #383838;
+    }
+
+    .card-rifa-destaque .img-rifa-destaque img {
+        width: 100%;
+        height: 290px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+
+    .card-rifa-destaque {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        padding-bottom: 10px;
+        background: #fff;
+        margin-bottom: 10px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .title-rifa-destaque {
+        padding-top: 5px;
+        padding-left: 10px;
+    }
+
+    .title-rifa-destaque h1 {
+        color: #202020;
+        -webkit-line-clamp: 2 !important;
+        margin-bottom: 1px;
+        font-weight: 500;
+        font-size: 1em;
+    }
+
+    .title-rifa-destaque p {
+        color: rgba(0, 0, 0, .7);
+        font-size: .75em;
+        max-width: 96%;
+        margin: 0;
+    }
+
+    /* *************************************************************** */
+
+
+    /* *************************************************************** */
+    /* Card Rifa Normal */
+    /* *************************************************************** */
+    .card-rifa img {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+    }
+
+    .card-rifa {
+        background: #fff;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        display: flex
+    }
+
+    .title-rifa {
+        margin-left: 15px;
+        width: 100%;
+    }
+
+    .blink {
+        margin-top: 5px;
+        animation: animate 1.5s linear infinite;
+    }
+
+
+
+    @keyframes  animate {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 0.7;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+
+
+
+<!-- Stored in resources/views/layouts/master.blade.php -->
+
+<html lang="pt-br">
+
+
+<!-- Mirrored from marciopremiacoes.com.br/politica-privacidade by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Aug 2024 23:22:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/app-original-2.css">
+    <meta name="csrf-token" content="C6o1LubUkhYHXIsHuZhHjvB1AlOEBsQpGB9e5k4H">
+    <meta http-equiv="Content-Language" content="pt-br">
+
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="color-scheme" content="light only">
+    <meta name="X-DarkMode-Default" value="false" />
+
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/bootstrap%404.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/bootstrap-icons%401.8.1/font/bootstrap-icons.css">
+
+    <link href="../cdn.jsdelivr.net/npm/bootstrap%405.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Fontawesome CDN -->
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery 1.8 or later, 33 KB -->
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="../cdn.jsdelivr.net/npm/bootstrap%404.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "kjco6qyij5");
+    </script>
+
+
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
+
+    <!-- Fotorama from CDNJS, 19 KB -->
+    <link href="../cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <script src="../cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+    <!--<script defer src="/js/app.js"></script>
+    <script src="//marciopremiacoes.com.br:6001/socket.io/socket.io.js"></script>-->
+
+    <title>Transparência e credibilidade sempre! </title>
+
+    
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        const mp = new MercadoPago("");
+    </script>
+
+    <style>
+        body {
+            /* min-height: 105vh; */
+        }
+
+        @media (max-width: 768px) {
+            .meus-numeros {
+                margin-left: 50px !important;
+            }
+
+            .header-menu {
+                justify-content: space-between !important;
+            }
+        }
+
+        @media  screen and (max-width: 768px) {
+            .app-main {
+                /* margin-top: 90px !important; */
+                /* margin-top: 20px !important; */
+                position: absolute;
+                z-index: 9999 !important;
+            }
+
+            .swal2-container {
+                z-index: 99999;
+            }
+        }
+
+        .app-main {
+            margin-bottom: 0px !important;
+            min-height: 100vh;
+        }
+
+        #loadingSystem {
+            background: rgba(206, 206, 206, 0.5) url("images/loading.gif") no-repeat scroll center center;
+            background-size: 150px 150px;
+            height: 100%;
+            left: 0;
+            overflow: visible;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999999;
+        }
+
+        .modal-v2 {
+            background-color: #fff !important;
+            color: block;
+        }
+
+        #telephone {
+            border-color: green !important;
+        }
+
+        .model-reserva {
+            border-color: green !important;
+            border-width: medium;
+        }
+
+        .model-v2-border {
+            border-radius: 10px;
+        }
+
+        .fa-whatsapp {
+            color: #198754
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/menu2.css">
+</head>
+
+<body style="background-color: #fff !important">
+        
+    
+    <link rel="stylesheet" href="../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <div id="loadingSystem" class="d-none"></div>
+
+
+    <nav class="navbar navbar-expand-lg px-0 py-3  text-white "
+        style="background-color: #000000 ; ">
+
+        <div class="container header-menu" style="justify-content:space-evenly;align-items: center;">
+            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center">
+                <div>
+                    <button type="button" aria-label="Menu" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#mobileMenu" style="margin-top: -10px; color: white; !important"><i
+                            class="bi bi-filter-right" style="font-size: 35px;"></i></button>
+
+                                    </div>
+
+                <div>
+                                            <a class=" " href="index.html"
+                            style="font-family: 'Roboto Condensed', sans-serif;">
+                                                            <img src="products/1720489160.png" alt=""
+                                    width="185" height="55" />
+                                                    </a>
+                                    </div>
+                <div>
+                    <a class="btn flex-b flex-col" href="contato.html"
+                        style="margin-top: -10px; display: flex; flex-direction: column; color: white; !important">
+                        <i class="bi bi-chat-right-dots" style="font-size: 20px;"></i>
+                        <span>suporte</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="modal fade modal-fluid" tabindex="-1" aria-labelledby="mobileMenuLabel"
+        style="display: none;z-index:999999; padding: 0px; margin: 0px !important" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-cor-primaria">
+                <header class="app-header app-header-mobile--show"
+                    style="background:  #000000  !important">
+                    <div class="container container-600 h-100 d-flex align-items-center justify-content-between">
+                        <a href="index.html">
+                                                            <img src="products/1720489160.png" alt=""
+                                    width="185" height="55" />
+                                                    </a>
+                        <div class="app-header-mobile"><button type="button"
+                                class="btn btn-link text-white menu-mobile--button pe-0 font-lgg"
+                                data-bs-dismiss="modal" aria-label="Fechar"><i class="bi bi-x-circle"></i></button>
+                        </div>
+                    </div>
+                </header>
+                <div class="modal-body"
+                    style="background:  #000000  !important">
+                    <div class="container container-600">
+                        <nav class="nav-vertical nav-submenu font-xs mb-2"
+                            style="color:  #212121  !important;">
+                            <ul>
+                                <li><a class="text-white" alt="Página Principal" href="index.html"><i
+                                            class="icone bi bi-house"></i><span>Início</span></a></li>
+                                                                    <li><a class="text-white" alt="Área de Afiliados"
+                                            href="area-afiliado.html"><i
+                                                class="icone bi bi-cash-coin"></i><span>Área de
+                                                Afiliados</span></a>
+                                    </li>
+                                                                <li><a class="text-white" alt="Sorteios" href="sorteios.html"><i
+                                            class="icone bi bi-ticket"></i><span>Sorteios</span></a></li>
+                                <li><a class="text-white" alt="Meus Números" data-bs-toggle="modal"
+                                        data-bs-target="#consultar-reservas"><i
+                                            class="icone bi bi-receipt"></i><span>Meus números</span></a>
+                                </li>
+
+                                <li><a alt="Termos de uso" class="text-white" href="politica-privacidade.html"><i
+                                            class="icone bi bi-blockquote-right"></i><span>Política de
+                                            Privacidade</span></a></li>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="text-center">
+                            <a href="login.html" class="btn btn-primary w-100 rounded-pill">
+                                <i class="icone bi bi-box-arrow-in-right"></i>
+                                Entrar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal  consultar -->
+    <div class="modal fade" id="consultar-reservas" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="z-index: 9999999;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content model-reserva" ">
+                <div class="modal-header modal-v2" style="">
+                    <h5 class="modal-title" id="exampleModalLabel" style="">CONSULTAR RESERVAS</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                        style="">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-v2 model-v2-border" style="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="https://marciopremiacoes.com.br/minhas-reservas" method="POST" style="display: flex;">
+                                <input type="hidden" name="_token" value="C6o1LubUkhYHXIsHuZhHjvB1AlOEBsQpGB9e5k4H">
+                                <input type="text" name="telephone" id="telephone"
+                                    style="color: #000000;margin-right:5px;"
+                                    aria-describedby="passwordHelpBlock" maxlength="15" placeholder="Celular com DDD"
+                                    class="form-control" required>
+                                <button type="submit" class="btn btn-green" style="background-color: #198754; color: #fff;">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .botao-flutuante {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 290px;
+            right: 10px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante:hover {
+            text-decoration: none;
+        }
+
+        .botao-flutuante-insta {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 250px;
+            right: 10px;
+            background-color: #CF235F;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante-insta:hover {
+            text-decoration: none;
+        }
+        .botao-flutuante-suporte {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 210px;
+            right: 10px;
+            background-color: #CF235F;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante-suporte:hover {
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .bg-not-mob-white {
+                background-color: #FFF !important;
+            }
+        }
+    </style>
+
+                                                        <a href="https://chat.whatsapp.com/Ja6nlh6xkcNACMcm4va6Ur" class="botao-flutuante" target="_blank">
+                        <i style="margin-top:8px" class="fa fa-whatsapp"></i>&nbsp; GRUPO
+                    </a>
+                    
+
+                                            <a href="https://www.instagram.com/marciopremiacoesoficial"
+                            class="botao-flutuante-insta" target="_blank">
+                            <i style="margin-top:8px" class="fab fa-instagram"></i>
+                            <span class="text-uppercase" style="font-size: 12px;">INSTAGRAM</span>
+                        </a>
+                                                                <a href="https://api.whatsapp.com/send?phone=+5574999091563"
+                            class="botao-flutuante-suporte bg-not-mob-white bg-transparent bg-md-white text-black fw-bold border border-2 border-black"
+                            target="_blank">
+                            <span class="text-uppercase" style="font-size: 12px;">suporte</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                                      
+
+                    <style>
+        .duvida {
+            background-color: #ffffff5e;
+            border-radius: 10px;
+            height: 60px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 7px;
+            cursor: pointer;
+        }
+
+        .icone-duvidas {
+            width: 50px;
+            justify-content: center;
+            align-items: center;
+            background-color: #b9b9b9;
+            height: 35px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .text-duvidas {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .f-15 {
+            font-size: 15px;
+        }
+
+        .f-12 {
+            font-size: 12px;
+        }
+
+        .data-sorteio {
+            /* float: right; */
+            padding-right: 10px;
+            font-weight: thin;
+            text-align: center;
+            /* margin-top: 10px; */
+            color: #000;
+        }
+
+        .rifas.dark {
+            background: #383838;
+        }
+
+        .app-title.dark h1 {
+            color: #fff;
+        }
+
+        .app-title-desc.dark {
+            color: #fff;
+        }
+
+        .card-rifa-destaque.dark {
+            background: #222222;
+        }
+
+        .title-rifa-destaque.dark h1 {
+            color: #fff;
+        }
+
+        .title-rifa-destaque.dark p {
+            color: #fff;
+        }
+
+        .card-rifa.dark {
+            background: #222222;
+        }
+
+        .text-duvidas.dark h6 {
+            color: #fff;
+        }
+
+        .text-duvidas.dark p {
+            color: #fff !important;
+        }
+
+        .data-sorteio.dark {
+            color: #fff !important;
+        }
+
+        .app-title.dark {
+            color: #fff;
+        }
+    </style>
+
+    <div class="container app-main" id="app-main">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-12 rifas">
+                <div class="app-title">
+                    <h1>📋 Política de Privacidade</h1>
+                </div>
+                <p class="text-center">
+                    Este site é mantido e operado por <strong>Transparência e credibilidade sempre!</strong>
+                </p>
+                <p class="text-center">
+                    Nós coletamos e utilizamos alguns dados pessoais que pertencem àqueles que utilizam
+                    nosso site. Ao fazê-lo, agimos na qualidade de controlador desses dados e estamos
+                    sujeitos às disposições da Lei Federal n. 13.709/2018 (Lei Geral de Proteção de Dados
+                    Pessoais - LGPD).
+                    Nós cuidamos da proteção de seus dados pessoais e, por isso, disponibilizamos esta
+                    política de privacidade, que contém informações importantes sobre:
+                </p>
+                <ul>
+                    <li> Quem deve utilizar nosso site.</li>
+                    <li>Quais dados coletamos e o que fazemos com eles.</li>
+                    <li>Seus direitos em relação aos seus dados pessoais.</li>
+                    <li>Como entrar em contato conosco.</li>
+                </ul>
+                <p>
+                <h5>1. Quem deve utilizar nosso site:</h5>
+                </p>
+                <p class="text-center">
+                    Nosso site só deve ser utilizado por pessoas com mais de dezoito anos de idade. Sendo
+                    assim, crianças e adolescentes não devem utilizá-lo.
+                </p>
+                <p>
+                <h5>2. Dados que coletamos e motivos da coleta:</h5>
+                </p>
+                <p class="text-center">
+                    Nosso site coleta e utiliza alguns dados pessoais de nossos usuários, de acordo com o
+                    disposto nesta seção.
+                </p>
+                <p>
+                    <i>1. Dados pessoais fornecidos expressamente pelo usuário:</i>
+                </p>
+                <p>
+                    Nós coletamos os seguintes dados pessoais que nossos usuários nos fornecem
+                    expressamente ao utilizar nosso site:
+                </p>
+                <ul>
+                    <li>Nome</li>
+                    <li>Data de nascimento</li>
+                    <li>E-mail</li>
+                    <li>CPF</li>
+                    <li>Telefone</li>
+                    <li>Endereço</li>
+                    <li>Dados de cartão de crédito ou débito</li>
+                </ul>
+
+                <p>
+                    A coleta destes dados ocorre nos seguintes momentos:
+                </p>
+
+                <ul>
+                    <li>Quando o usuário utiliza o formulário de contato</li>
+                    <li>Quando o usuário faz seu cadastro no site</li>
+                    <li>Quando o usuário faz uma compra</li>
+                </ul>
+
+                <p>
+                    Os dados fornecidos por nossos usuários são coletados com as seguintes finalidades:
+                </p>
+
+                <ul>
+                    <li>Para que o usuário possa adquirir nossos produtos e serviços</li>
+                    <li>Para que o usuário possa entrar em contato com o nosso SAC</li>
+                    <li>Para que nós possamos enviar nossos produtos aos usuários cadastrados</li>
+                    <li>Para que possamos enviar ofertas a nossos usuários</li>
+                </ul>
+
+                <p>
+                    <i>2. Dados pessoais obtidos de outras formas:</i>
+                </p>
+
+                <p>Nós coletamos os seguintes dados pessoais de nossos usuários:</p>
+
+                <ul>
+                    <li>Endereço IP</li>
+                    <li>Dados geolocalização</li>
+                    <li>Dados de transações feitas por meio do site</li>
+                </ul>
+
+                <p>A coleta destes dados ocorre nos seguintes momentos:</p>
+
+                <ul>
+                    <li>Quando o usuário faz login e logout no site</li>
+                    <li>Quando o usuário realiza uma compra</li>
+                    <li>Quando o usuário seleciona algum produto ou serviço</li>
+                </ul>
+
+                <p>Estes dados são coletados com as seguintes finalidades:</p>
+
+                <ul>
+                    <li>Garantir a segurança e a autenticidade das transações feitas no site</li>
+                    <li>Cumprir determinação legal de armazenamento de registros de acesso a aplicações</li>
+                    <li>Personalizar a experiência do usuário</li>
+                </ul>
+
+                <p>
+                    <i>3. Dados sensíveis:</i>
+                </p>
+
+                <p>
+                    <strong>Não</strong> serão coletados dados sensíveis de nossos usuários, assim entendidos aqueles
+                    definidos nos arts. 11 e seguintes da Lei de Proteção de Dados Pessoais. Assim, não
+                    haverá coleta de dados sobre origem racial ou étnica, convicção religiosa, opinião política,
+                    filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado
+                    referente à saúde ou à vida sexual, dado genético ou biométrico, quando vinculado a uma
+                    pessoa natural.
+                </p>
+
+                <p>
+                    <i>4. Cookies:</i>
+                </p>
+
+                <p>
+                    Cookies são pequenos arquivos de texto baixados automaticamente em seu dispositivo
+                    quando você acessa e navega por um site. Eles servem, basicamente, para seja possível
+                    identificar dispositivos, atividades e preferências de usuários
+                </p>
+
+                <p>
+                    Os cookies não permitem que qualquer arquivo ou informação sejam extraídos do disco
+                    rígido do usuário, não sendo possível, ainda, que, por meio deles, se tenha acesso a
+                    informações pessoais que não tenham partido do usuário ou da forma como utiliza os
+                    recursos do site.
+                </p>
+
+                <p>
+                    Os cookies do site são aqueles enviados ao computador ou dispositivo do usuário e
+                    administrador exclusivamente pelo site.
+                </p>
+
+                <p>
+                    As informações coletadas por meio destes cookies são utilizadas para melhorar e
+                    personalizar a experiência do usuário, sendo que alguns cookies podem, por exemplo, ser
+                    utilizados para lembrar as preferências e escolhas do usuário, bem como para o
+                    oferecimento de conteúdo personalizado.
+                </p>
+
+                <p>
+                    Alguns de nossos parceiros podem configurar cookies nos dispositivos dos usuários que
+                    acessam nosso site.
+                </p>
+
+                <p>
+                    Estes cookies, em geral, visam possibilitar que nossos parceiros possam oferecer seu
+                    conteúdo e seus serviços ao usuário que acessa nosso site de forma personalizada, por
+                    meio da obtenção de dados de navegação extraídos a partir de sua interação com o site.
+                </p>
+
+                <p>
+                    O usuário poderá obter mais informações sobre os cookies de terceiro e sobre a forma como
+                    os dados obtidos a partir dele são tratados, além de ter acesso à descrição dos cookies
+                    utilizados e de suas características, acessando o seguinte link:
+                </p>
+
+                <p>
+                    Google: <a href="https://www.google.com.br/">https://www.google.com.br</a><br>
+                    Facebook: <a href="https://pt-br.facebook.com/">https://pt-br.facebook.com</a>
+                </p>
+
+                <p>
+                    As entidades encarregadas da coleta dos cookies poderão ceder as informações obtidas a
+                    terceiros.
+                </p>
+
+                <p>
+                    O usuário poderá se opor ao registro de cookies pelo site, bastando que desative esta opção
+                    no seu próprio navegador. Mais informações sobre como fazer isso em alguns dos principais
+                    navegadores utilizados hoje podem ser acessadas a partir dos seguintes links:
+                </p>
+
+                <p>
+                    Internet Explorer: <a
+                        href="https://support.microsoft.com/pt-br/windows/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d">https://support.microsoft.com/pt-br/windows/excluir-e-gerenciar-cookies</a><br><br>
+
+                    Safari: <a
+                        href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac">https://support.apple.com/pt-br/guide/safari/sfri11471/mac</a><br><br>
+
+                    Google Chrome: <a
+                        href="https://support.google.com/chrome/answer/95647?hl=pt-BR&amp;hlrm=pt">https://support.google.com/chrome/answer/95647?hl=pt-BR&hlrm=pt</a><br><br>
+
+                    Mozila Firefox: <a
+                        href="https://support.mozilla.org/pt-BR/kb/protecao-aprimorada-contra-rastreamento-firefox-desktop?redirectslug=ative-e-desative-os-cookies-que-os-sites-usam&amp;redirectlocale=pt-BR">https://support.mozilla.org/pt-BR/kb/protecao-aprimorada-contra-rastreamento-firefox-desktop?redirectslug=ative-e-desative-os-cookies-que-os-sites-usam</a><br><br>
+
+                    Opera: <a
+                        href="https://help.opera.com/en/latest/web-preferences/">https://help.opera.com/en/latest/web-preferences/</a>
+                </p>
+
+                <p>
+                    A desativação dos cookies, no entanto, pode afetar a disponibilidade de algumas
+                    ferramentas e funcionalidades do site, comprometendo seu correto e esperado
+                    funcionamento. Outra consequência possível é remoção das preferências do usuário que
+                    eventualmente tiverem sido salvas, prejudicando sua experiência.
+                </p>
+
+                <p>
+                    <i>5. Coleta de dados não previstos expressamente:</i>
+                </p>
+
+                <p>
+                    Eventualmente, outros tipos de dados não previstos expressamente nesta Política de
+                    Privacidade poderão ser coletados, desde que sejam fornecidos com o consentimento do
+                    usuário, ou, ainda, que a coleta seja permitida com fundamento em outra base legal prevista
+                    em lei.
+                </p>
+
+                <p>
+                    Em qualquer caso, a coleta de dados e as atividades de tratamento dela decorrentes serão
+                    informadas aos usuários do site.
+                </p>
+
+                <p>
+                <h5>3. Compartilhamento de dados pessoais com terceiros:</h5>
+                </p>
+
+                <p>
+                    Nós não compartilhamos seus dados pessoais com terceiros. Apesar disso, é possível que o
+                    façamos para cumprir alguma determinação legal ou regulatória, ou, ainda, para cumprir
+                    alguma ordem expedida por autoridade pública.
+                </p>
+
+                <p>
+                <h5>4. Por quanto tempo seus dados pessoais são armazenados:</h5>
+                </p>
+
+                <p>
+                    Os dados pessoais coletados pelo site são armazenados e utilizados por período de tempo
+                    que corresponda ao necessário para atingir as finalidades elencadas neste documento e
+                    que considere os direitos de seus titulares, os direitos do controlador do site e as
+                    disposições legais ou regulatórias aplicáveis.
+                </p>
+
+                <p>
+                    Uma vez expirados os períodos de armazenamento dos dados pessoais, eles são
+                    removidos de nossas bases de dados ou anonimizados, salvo nos casos em que houver a
+                    possibilidade ou a necessidade de armazenamento em virtude de disposição legal ou
+                    regulatória.
+                </p>
+
+                <p>
+                <h5>5. Bases legais para o tratamento de dados pessoais</h5>
+                </p>
+
+                <p>
+                    Cada operação de tratamento de dados pessoais precisa ter um fundamento jurídico, ou
+                    seja, uma base legal, que nada mais é que uma justificativa que a autorize, prevista na Lei
+                    Geral de Proteção de Dados Pessoais.
+                </p>
+
+                <p>
+                    Todas as Nossas atividades de tratamento de dados pessoais possuem uma base legal que
+                    as fundamenta, dentre as permitidas pela legislação. Mais informações sobre as bases
+                    legais que utilizamos para operações de tratamento de dados pessoais específicas podem
+                    ser obtidas a partir de nossos canais de contato, informados ao final desta Política.
+                </p>
+
+                <p>
+                <h5>6. Transferência Internacional de dados pessoais</h5>
+                </p>
+
+                <p>
+                    Os Dados Pessoais do consumidor serão tratados no Brasil, armazenados em servidores
+                    localizados no Brasil, na União Europeia ou nos EUA.
+                </p>
+
+                <p>
+                    No caso de transferência de dados para países terceiros, a Hands On verificará se esses
+                    terceiros operam em países onde a Autoridade Nacional de Proteção de Dados Pessoais
+                    (ANPD) venha a reconhecer um nível de proteção adequado. Caso envolva a transferência
+                    para países terceiros onde a ANPD não venha a reconhecer um nível adequado de
+                    proteção, serão negociadas cláusulas adequadas de proteção de dados com esses
+                    terceiros.
+                </p>
+
+                <p>
+                    Caso o tratamento de seus Dados Pessoais envolva a transferência para países terceiros
+                    onde a ANPD não venha a reconhecer um nível adequado de proteção ou outras medidas
+                    adequadas de proteção de dados, seus Dados Pessoais serão tratados em seu interesse e
+                    de acordo com seu próprio consentimento.
+                </p>
+
+                <p>
+                    Lembre-se de que, apesar da Hands On emitir instruções operacionais comuns para todos
+                    os países em que o grupo opera, a transferência de seus Dados Pessoais pode estar
+                    exposta a alguns riscos relacionados à legislação local específica desses terceiros países
+                    sobre tratamento de dados pessoais.
+                </p>
+
+                <p>
+                <h5>7. Direitos do usuário</h5>
+                </p>
+
+                <p>
+                    O usuário do site possui os seguintes direitos, conferidos pela Lei de Proteção de Dados
+                    Pessoais:
+                </p>
+
+                <p>
+                <ul>
+                    <li>confirmação da existência de tratamento</li>
+                    <li>acesso aos dados</li>
+                    <li>correção de dados incompletos, inexatos ou desatualizados</li>
+                    <li>
+                        anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou
+                        tratados em desconformidade com o disposto na lei
+                    </li>
+                    <li>
+                        portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição
+                        expressa, de acordo com a regulamentação da autoridade nacional, observados os
+                        segredos comercial e industrial
+                    </li>
+                    <li>
+                        eliminação dos dados pessoais tratados com o consentimento do titular, exceto nos
+                        casos previstos em lei
+                    </li>
+                    <li>
+                        informação das entidades públicas e privadas com as quais o controlador realizou uso
+                        compartilhado de dados
+                    </li>
+                    <li>
+                        informação sobre a possibilidade de não fornecer consentimento e sobre as
+                        consequências da negativa
+                    </li>
+                    <li>revogação do consentimento</li>
+                </ul>
+                </p>
+
+                <p>
+                    É importante destacar que, nos termos da LGPD, não existe um direito de eliminação de
+                    dados tratados com fundamento em bases legais distintas do consentimento, a menos que
+                    os dados sejam desnecessários, excessivos ou tratados em desconformidade com o
+                    previsto na lei.
+                </p>
+
+                <p>
+                    Para garantir que o usuário que pretende exercer seus direitos é, de fato, o titular dos dados
+                    pessoais objeto da requisição, poderemos solicitar documentos ou outras informações que
+                    possam auxiliar em sua correta identificação, a fim de resguardar nossos direitos e os
+                    direitos de terceiros. Isto somente será feito, porém, se for absolutamente necessário, e o
+                    requerente receberá todas as informações relacionadas.
+                </p>
+
+                <p>
+                <h5>8. Medidas de segurança no tratamento de dados pessoais</h5>
+                </p>
+
+                <p>
+                    Empregamos medidas técnicas e organizativas aptas a proteger os dados pessoais de
+                    acessos não autorizados e de situações de destruição, perda, extravio ou alteração desses
+                    dados.
+                </p>
+
+                <p>
+                    As medidas que utilizamos levam em consideração a natureza dos dados, o contexto e a
+                    finalidade do tratamento, os riscos que uma eventual violação geraria para os direitos e
+                    liberdades do usuário, e os padrões atualmente empregados no mercado por empresas
+                    semelhantes à nossa.
+                </p>
+
+                <p>
+                    Entre as medidas de segurança adotadas por nós, destacamos as seguintes:
+                </p>
+
+                <ul>
+                    <li>Senhas criptografadas em base 64</li>
+                    <li>Controle de acessos ao banco de dados</li>
+                    <li>Monitoramento de trafego de dados</li>
+                    <li>Infraestrutura AWS</li>
+                    <li>Conexões Secure Socket Layer</li>
+                </ul>
+
+                <p>
+                    Ainda que adote tudo o que está ao seu alcance para evitar incidentes de segurança, é
+                    possível que ocorra algum problema motivado exclusivamente por um terceiro - como em
+                    caso de ataques de hackers ou crackers ou, ainda, em caso de culpa exclusiva do usuário,
+                    que ocorre, por exemplo, quando ele mesmo transfere seus dados a terceiro. Assim, embora
+                    sejamos, em geral, responsáveis pelos dados pessoais que tratamos, nos eximimos de
+                    responsabilidade caso ocorra uma situação excepcional como essas, sobre as quais não
+                    temos nenhum tipo de controle.
+                </p>
+
+                <p>
+                    De qualquer forma, caso ocorra qualquer tipo de incidente de segurança que possa gerar
+                    risco ou dano relevante para qualquer de nossos usuários, comunicaremos os afetados e a
+                    Autoridade Nacional de Proteção de Dados acerca do ocorrido, em conformidade com o
+                    disposto na Lei Geral de Proteção de Dados.
+                </p>
+
+                <p>
+                <h5>9. Reclamação a uma autoridade de controle</h5>
+                </p>
+
+                <p>
+                    Sem prejuízo de qualquer outra via de recurso administrativo ou judicial, os titulares de
+                    dados pessoais que se sentirem, de qualquer forma, lesados, podem apresentar reclamação
+                    à Autoridade Nacional de Proteção de Dados.
+                </p>
+
+                <p>
+                <h5>10. Alterações nesta política</h5>
+                </p>
+
+                <p>
+                    A presente versão desta Política de Privacidade foi atualizada pela última vez em:
+                    21/11/2022.
+                </p>
+
+                <p>
+                    Reservamo-nos o direito de modificar, a qualquer momento, as presentes normas,
+                    especialmente para adaptá-las às eventuais alterações feitas em nosso site, seja pela
+                    disponibilização de novas funcionalidades, seja pela supressão ou modificação daquelas já
+                    existentes.
+                </p>
+
+                <p>
+                    Sempre que houver uma modificação, nossos usuários serão notificados acerca da
+                    mudança.
+                </p>
+
+                <p>
+                <h5>11. Como entrar em contato conosco</h5>
+                </p>
+
+                <p>
+                    Telefone: +5574999091563
+                </p>
+                <p>
+                    Email: marciopremiacoes.suporte@gmail.com
+                </p>
+                            </div>
+        </div>
+        <br>
+        <footer class="footer "
+        style="height:auto;background-color: #000;margin-top:0px!important; text-align: center;bottom: -32px;">
+                    <div class="col-md-12 col-12 font-xs"
+                style="color: #fff; background-color:  #000000 ;">
+                <b>Transparência e credibilidade sempre!</b>
+                <br>
+                © Copyright 2024 - Todos os direitos reservados<br>
+                Desenvolvido com
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
+                    viewBox="0 0 100.000000 100.000000" preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#34a772"
+                        stroke="none">
+                        <path d="M387 860 c-38 -30 -43 -77 -18 -151 l21 -62 -36 42 c-61 71 -119 89
+                                    -167 51 -31 -25 -44 -79 -29 -126 8 -28 7 -36 -10 -51 -49 -44 -61 -104 -28
+                                    -146 30 -38 77 -43 151 -18 l62 21 -42 -36 c-71 -61 -89 -119 -51 -167 25 -31
+                                    79 -44 124 -30 29 9 36 7 64 -18 82 -74 185 -25 168 79 l-5 33 53 -54 c30 -30
+                                    75 -64 101 -77 49 -24 164 -42 135 -21 -8 6 -26 11 -40 11 -59 1 -157 62 -211
+                                    132 -25 32 -27 38 -8 22 56 -49 101 -56 142 -24 31 25 44 79 30 124 -9 29 -7
+                                    36 18 64 39 43 47 96 22 130 -31 42 -78 49 -153 23 l-63 -21 42 36 c71 61 89
+                                    119 51 167 -25 31 -79 44 -126 29 -28 -8 -36 -7 -51 10 -44 49 -104 61 -146
+                                    28z m86 -11 c12 -6 34 -23 49 -36 24 -23 29 -24 62 -13 72 24 136 -17 121 -77
+                                    -8 -33 -77 -102 -163 -161 l-62 -44 -50 104 c-27 57 -52 122 -56 145 -5 36 -3
+                                    45 19 67 29 28 47 32 80 15z m-186 -128 c31 -20 86 -83 144 -168 l30 -42 -79
+                                    -40 c-153 -77 -215 -86 -248 -36 -21 32 -13 64 27 110 29 32 30 37 19 70 -15
+                                    44 -5 90 23 110 28 20 46 19 84 -4z m518 -136 c37 -36 31 -70 -22 -127 -23
+                                    -24 -24 -29 -13 -62 24 -72 -17 -136 -77 -121 -33 8 -102 77 -161 163 l-43 61
+                                    73 37 c87 44 164 73 196 74 13 0 34 -11 47 -25z m-296 -173 c77 -153 86 -215
+                                    36 -248 -32 -21 -64 -13 -110 27 -32 29 -37 30 -70 19 -46 -15 -92 -4 -111 26
+                                    -32 48 0 98 125 190 47 35 87 64 88 64 2 0 20 -35 42 -78z" />
+                        <path d="M215 693 c-12 -11 -15 -25 -11 -47 10 -50 24 -52 19 -2 -5 42 -4 46
+                                15 46 12 0 39 -19 62 -42 22 -23 40 -37 40 -31 0 13 -85 93 -99 93 -5 0 -17
+                                -7 -26 -17z" />
+                        <path d="M360 575 c7 -9 15 -13 17 -11 7 7 -7 26 -19 26 -6 0 -6 -6 2 -15z" />
+                        <path d="M780 536 c0 -7 -9 -25 -21 -40 -11 -14 -16 -26 -10 -26 11 0 51 57
+                                    51 73 0 4 -4 7 -10 7 -5 0 -10 -6 -10 -14z" />
+                        <path d="M715 423 c3 -16 9 -45 12 -65 5 -35 3 -38 -18 -38 -16 0 -20 -3 -13
+                                    -10 15 -15 41 -3 47 22 7 24 -14 118 -27 118 -4 0 -5 -12 -1 -27z" />
+                    </g>
+                </svg>
+
+                por
+                <a target="_blank" href="index.html">
+
+                    <span class="text-bg-success badge" style="color: #fff!important; font-size: 12px;">Marcio Premiações</span>
+
+                </a>
+            </div>
+            </footer>
+    </div>
+
+    <br>
+
+                <script>
+                    if (document.getElementById('telephone')) {
+                        document.getElementById('telephone').addEventListener('input', function(e) {
+                            var aux = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                            e.target.value = !aux[2] ? aux[1] : '(' + aux[1] + ') ' + aux[2] + (aux[3] ? '-' + aux[3] : '');
+                        });
+                    }
+                    if (document.getElementById('telephone1')) {
+                        document.getElementById('telephone1').addEventListener('input', function(e) {
+                            var aux = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                            e.target.value = !aux[2] ? aux[1] : '(' + aux[1] + ') ' + aux[2] + (aux[3] ? '-' + aux[3] : '');
+                        });
+                    }
+
+                    function loading() {
+                        var el = document.getElementById('loadingSystem');
+                        el.classList.toggle("d-none");
+                    }
+                </script>
+                <script src="../cdn.jsdelivr.net/npm/bootstrap%405.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+                </script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+
+<!-- Mirrored from marciopremiacoes.com.br/politica-privacidade by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Aug 2024 23:22:08 GMT -->
+</html>

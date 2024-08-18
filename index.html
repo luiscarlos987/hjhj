@@ -1,0 +1,940 @@
+<link rel="manifest" href="manifest.json">
+<script type="text/javascript" src="sw.js"></script>
+</style>
+
+<script src="../code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    $(function(e) {
+        // if (isIOS()) {
+        //     $('#app-main').attr('style', 'margin-top: 100px !important');
+        // }
+    })
+
+    function isIOS() {
+        var ua = navigator.userAgent.toLowerCase();
+
+        //Lista de dispositivos que acessar
+        var iosArray = ['iphone', 'ipod'];
+
+        var isApple = false;
+
+        if (ua.includes('iphone') || ua.includes('ipod')) {
+            isApple = true
+        }
+
+        return isApple;
+    }
+
+    function duvidas() {
+        window.open('https://api.whatsapp.com/send?phone=+5574999091563', '_blank');
+    }
+
+    function verRifa(route) {
+        window.location.href = route
+    }
+</script>
+
+
+<style>
+    @media  only screen and (-webkit-min-device-pixel-ratio: 1) {
+
+        ::i-block-chrome,
+        .app-main {
+            margin-top: 100px !important;
+        }
+    }
+
+    .app-main {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        max-width: 600px;
+
+        margin-bottom: 50px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .app-main a {
+        text-decoration: none;
+    }
+
+    .app-main a:hover {
+        text-decoration: none;
+    }
+
+    .app-title {
+        display: flex;
+        align-items: self-end;
+        padding-bottom: 10px;
+    }
+
+    .app-title h1 {
+        color: rgba(0, 0, 0, .9);
+        padding-right: 5px;
+        font-weight: 600;
+        font-size: 1.3em;
+        margin: 0;
+        padding-top: 10px;
+    }
+
+    .app-title .app-title-desc {
+        color: rgba(0, 0, 0, .5);
+        padding-top: 6px;
+        font-size: .9em;
+    }
+
+
+    /* *************************************************************** */
+    /* Card Rifa em Destaque */
+    /* *************************************************************** */
+    .rifas {
+        background: #e4e4e4;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        position: absolute;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        min-height: 100vh;
+    }
+
+    .rifa-dark {
+        background-color: #383838;
+    }
+
+    .card-rifa-destaque .img-rifa-destaque img {
+        width: 100%;
+        height: 290px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+
+    .card-rifa-destaque {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        padding-bottom: 10px;
+        background: #fff;
+        margin-bottom: 10px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .title-rifa-destaque {
+        padding-top: 5px;
+        padding-left: 10px;
+    }
+
+    .title-rifa-destaque h1 {
+        color: #202020;
+        -webkit-line-clamp: 2 !important;
+        margin-bottom: 1px;
+        font-weight: 500;
+        font-size: 1em;
+    }
+
+    .title-rifa-destaque p {
+        color: rgba(0, 0, 0, .7);
+        font-size: .75em;
+        max-width: 96%;
+        margin: 0;
+    }
+
+    /* *************************************************************** */
+
+
+    /* *************************************************************** */
+    /* Card Rifa Normal */
+    /* *************************************************************** */
+    .card-rifa img {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+    }
+
+    .card-rifa {
+        background: #fff;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        display: flex
+    }
+
+    .title-rifa {
+        margin-left: 15px;
+        width: 100%;
+    }
+
+    .blink {
+        margin-top: 5px;
+        animation: animate 1.5s linear infinite;
+    }
+
+
+
+    @keyframes  animate {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 0.7;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+
+
+
+<!-- Stored in resources/views/layouts/master.blade.php -->
+
+<html lang="pt-br">
+
+
+<!-- Mirrored from marciopremiacoes.com.br/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Aug 2024 23:21:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/app-original-2.css">
+    <meta name="csrf-token" content="C6o1LubUkhYHXIsHuZhHjvB1AlOEBsQpGB9e5k4H">
+    <meta http-equiv="Content-Language" content="pt-br">
+
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="color-scheme" content="light only">
+    <meta name="X-DarkMode-Default" value="false" />
+
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/bootstrap%404.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/bootstrap-icons%401.8.1/font/bootstrap-icons.css">
+
+    <link href="../cdn.jsdelivr.net/npm/bootstrap%405.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Fontawesome CDN -->
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery 1.8 or later, 33 KB -->
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="../cdn.jsdelivr.net/npm/bootstrap%404.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "kjco6qyij5");
+    </script>
+
+
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
+
+    <!-- Fotorama from CDNJS, 19 KB -->
+    <link href="../cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <script src="../cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+    <!--<script defer src="/js/app.js"></script>
+    <script src="//marciopremiacoes.com.br:6001/socket.io/socket.io.js"></script>-->
+
+    <title>Transparência e credibilidade sempre! </title>
+
+    
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        const mp = new MercadoPago("");
+    </script>
+
+    <style>
+        body {
+            /* min-height: 105vh; */
+        }
+
+        @media (max-width: 768px) {
+            .meus-numeros {
+                margin-left: 50px !important;
+            }
+
+            .header-menu {
+                justify-content: space-between !important;
+            }
+        }
+
+        @media  screen and (max-width: 768px) {
+            .app-main {
+                /* margin-top: 90px !important; */
+                /* margin-top: 20px !important; */
+                position: absolute;
+                z-index: 9999 !important;
+            }
+
+            .swal2-container {
+                z-index: 99999;
+            }
+        }
+
+        .app-main {
+            margin-bottom: 0px !important;
+            min-height: 100vh;
+        }
+
+        #loadingSystem {
+            background: rgba(206, 206, 206, 0.5) url("images/loading.gif") no-repeat scroll center center;
+            background-size: 150px 150px;
+            height: 100%;
+            left: 0;
+            overflow: visible;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999999;
+        }
+
+        .modal-v2 {
+            background-color: #fff !important;
+            color: block;
+        }
+
+        #telephone {
+            border-color: green !important;
+        }
+
+        .model-reserva {
+            border-color: green !important;
+            border-width: medium;
+        }
+
+        .model-v2-border {
+            border-radius: 10px;
+        }
+
+        .fa-whatsapp {
+            color: #198754
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/menu2.css">
+</head>
+
+<body style="background-color: #fff !important">
+        
+    
+    <link rel="stylesheet" href="../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <div id="loadingSystem" class="d-none"></div>
+
+
+    <nav class="navbar navbar-expand-lg px-0 py-3  text-white "
+        style="background-color: #000000 ; ">
+
+        <div class="container header-menu" style="justify-content:space-evenly;align-items: center;">
+            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center">
+                <div>
+                    <button type="button" aria-label="Menu" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#mobileMenu" style="margin-top: -10px; color: white; !important"><i
+                            class="bi bi-filter-right" style="font-size: 35px;"></i></button>
+
+                                    </div>
+
+                <div>
+                                            <a class=" " href="index.html"
+                            style="font-family: 'Roboto Condensed', sans-serif;">
+                                                            <img src="products/1720489160.png" alt=""
+                                    width="185" height="55" />
+                                                    </a>
+                                    </div>
+                <div>
+                    <a class="btn flex-b flex-col" href="contato.html"
+                        style="margin-top: -10px; display: flex; flex-direction: column; color: white; !important">
+                        <i class="bi bi-chat-right-dots" style="font-size: 20px;"></i>
+                        <span>suporte</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="modal fade modal-fluid" tabindex="-1" aria-labelledby="mobileMenuLabel"
+        style="display: none;z-index:999999; padding: 0px; margin: 0px !important" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-cor-primaria">
+                <header class="app-header app-header-mobile--show"
+                    style="background:  #000000  !important">
+                    <div class="container container-600 h-100 d-flex align-items-center justify-content-between">
+                        <a href="index.html">
+                                                            <img src="products/1720489160.png" alt=""
+                                    width="185" height="55" />
+                                                    </a>
+                        <div class="app-header-mobile"><button type="button"
+                                class="btn btn-link text-white menu-mobile--button pe-0 font-lgg"
+                                data-bs-dismiss="modal" aria-label="Fechar"><i class="bi bi-x-circle"></i></button>
+                        </div>
+                    </div>
+                </header>
+                <div class="modal-body"
+                    style="background:  #000000  !important">
+                    <div class="container container-600">
+                        <nav class="nav-vertical nav-submenu font-xs mb-2"
+                            style="color:  #212121  !important;">
+                            <ul>
+                                <li><a class="text-white" alt="Página Principal" href="index.html"><i
+                                            class="icone bi bi-house"></i><span>Início</span></a></li>
+                                                                    <li><a class="text-white" alt="Área de Afiliados"
+                                            href="area-afiliado.html"><i
+                                                class="icone bi bi-cash-coin"></i><span>Área de
+                                                Afiliados</span></a>
+                                    </li>
+                                                                <li><a class="text-white" alt="Sorteios" href="sorteios.html"><i
+                                            class="icone bi bi-ticket"></i><span>Sorteios</span></a></li>
+                                <li><a class="text-white" alt="Meus Números" data-bs-toggle="modal"
+                                        data-bs-target="#consultar-reservas"><i
+                                            class="icone bi bi-receipt"></i><span>Meus números</span></a>
+                                </li>
+
+                                <li><a alt="Termos de uso" class="text-white" href="politica-privacidade.html"><i
+                                            class="icone bi bi-blockquote-right"></i><span>Política de
+                                            Privacidade</span></a></li>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="text-center">
+                            <a href="login.html" class="btn btn-primary w-100 rounded-pill">
+                                <i class="icone bi bi-box-arrow-in-right"></i>
+                                Entrar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal  consultar -->
+    <div class="modal fade" id="consultar-reservas" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="z-index: 9999999;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content model-reserva" ">
+                <div class="modal-header modal-v2" style="">
+                    <h5 class="modal-title" id="exampleModalLabel" style="">CONSULTAR RESERVAS</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                        style="">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-v2 model-v2-border" style="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="https://marciopremiacoes.com.br/minhas-reservas" method="POST" style="display: flex;">
+                                <input type="hidden" name="_token" value="C6o1LubUkhYHXIsHuZhHjvB1AlOEBsQpGB9e5k4H">
+                                <input type="text" name="telephone" id="telephone"
+                                    style="color: #000000;margin-right:5px;"
+                                    aria-describedby="passwordHelpBlock" maxlength="15" placeholder="Celular com DDD"
+                                    class="form-control" required>
+                                <button type="submit" class="btn btn-green" style="background-color: #198754; color: #fff;">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .botao-flutuante {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 290px;
+            right: 10px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante:hover {
+            text-decoration: none;
+        }
+
+        .botao-flutuante-insta {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 250px;
+            right: 10px;
+            background-color: #CF235F;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante-insta:hover {
+            text-decoration: none;
+        }
+        .botao-flutuante-suporte {
+            position: fixed;
+            width: 100px;
+            height: 30px;
+            top: 210px;
+            right: 10px;
+            background-color: #CF235F;
+            color: #FFF;
+            border-radius: 15px;
+            text-align: center;
+            align-items: center;
+            /* font-size: 30px; */
+            box-shadow: 1px 1px 2px #888;
+            z-index: 99999;
+            text-decoration: none;
+        }
+
+        .botao-flutuante-suporte:hover {
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .bg-not-mob-white {
+                background-color: #FFF !important;
+            }
+        }
+    </style>
+
+                                                        <a href="https://chat.whatsapp.com/Ja6nlh6xkcNACMcm4va6Ur" class="botao-flutuante" target="_blank">
+                        <i style="margin-top:8px" class="fa fa-whatsapp"></i>&nbsp; GRUPO
+                    </a>
+                    
+
+                                            <a href="https://www.instagram.com/marciopremiacoesoficial"
+                            class="botao-flutuante-insta" target="_blank">
+                            <i style="margin-top:8px" class="fab fa-instagram"></i>
+                            <span class="text-uppercase" style="font-size: 12px;">INSTAGRAM</span>
+                        </a>
+                                                                <a href="https://api.whatsapp.com/send?phone=+5574999091563"
+                            class="botao-flutuante-suporte bg-not-mob-white bg-transparent bg-md-white text-black fw-bold border border-2 border-black"
+                            target="_blank">
+                            <span class="text-uppercase" style="font-size: 12px;">suporte</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                                      
+
+                    <style>
+        .duvida {
+            background-color: #ffffff5e;
+            border-radius: 10px;
+            height: 60px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 7px;
+            cursor: pointer;
+        }
+
+        .icone-duvidas {
+            width: 50px;
+            justify-content: center;
+            align-items: center;
+            background-color: #b9b9b9;
+            height: 35px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .text-duvidas {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .f-15 {
+            font-size: 15px;
+        }
+
+        .f-12 {
+            font-size: 12px;
+        }
+
+        .data-sorteio {
+            /* float: right; */
+            padding-right: 10px;
+            font-weight: thin;
+            text-align: center;
+            /* margin-top: 10px; */
+            color: #000;
+        }
+
+        .rifas.dark {
+            background: #383838;
+        }
+
+        .app-title.dark h1 {
+            color: #fff;
+        }
+
+        .app-title-desc.dark {
+            color: #fff;
+        }
+
+        .card-rifa-destaque.dark {
+            background: #222222;
+        }
+
+        .title-rifa-destaque.dark h1 {
+            color: #fff;
+        }
+
+        .title-rifa-destaque.dark p {
+            color: #fff;
+        }
+
+        .card-rifa.dark {
+            background: #222222;
+        }
+
+        .text-duvidas.dark h6 {
+            color: #fff;
+        }
+
+        .text-duvidas.dark p {
+            color: #fff !important;
+        }
+
+        .data-sorteio.dark {
+            color: #fff !important;
+        }
+
+        .app-title.dark {
+            color: #fff;
+        }
+
+        .lista-horizontal {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .no-underline {
+            text-decoration: none;
+            hover: text-decoration: none;
+        }
+
+        .no-underline:hover {
+            text-decoration: none;
+        }
+
+        .ribbon {
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            z-index: 1;
+            overflow: hidden;
+            width: 93px;
+            height: 93px;
+            text-align: right;
+        }
+
+        .ribbon span {
+            color: rgb(186, 184, 182);
+            background-image: initial;
+            background-color: rgb(7, 107, 37);
+            box-shadow: rgb(0, 0, 0) 0px 3px 10px -5px;
+        }
+
+        .ribbon span {
+            font-size: 0.7rem;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            line-height: 32px;
+            transform: rotate(45deg);
+            width: 125px;
+            display: block;
+            background: #05a936;
+            /* background: linear-gradient(#00cb2c 0%, #00cb2c 100%); */
+            box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 17px;
+            right: -29px;
+        }
+
+        .ribbon span::before {
+            border-color: rgb(6, 153, 38) transparent transparent rgb(6, 153, 38);
+        }
+
+        .ribbon span::before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid #00cb2c;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #00cb2c;
+        }
+
+        .ribbon span::after {
+            border-color: rgb(6, 153, 38) rgb(6, 153, 38) transparent transparent;
+        }
+
+        .ribbon span::after {
+            content: "";
+            position: absolute;
+            right: 0%;
+            top: 100%;
+            z-index: -1;
+            border-right: 3px solid #00cb2c;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #00cb2c;
+        }
+    </style>
+
+    <div id="camp" class=""
+        style="background-color:  #000000 ; width: 100%;margin-top: -1px">
+        <div class="d-flex container">
+            <div class="col-md-6 col-12 container">
+                <ul class="lista-horizontal px-0 py-3 font-xs" style="margin: 0;">
+                    <li class="">
+                        <a href="sorteios.html" class="no-underline">
+                            <i class="bi bi-stars" style="color: #fad601"></i>
+                            <span class="fs-5"
+                                style="color: #ffffff ">Campanhas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-open no-underline" data-bs-toggle="modal" data-bs-target="#consultar-reservas"
+                            style="color: #ffffff ">
+                            Meus títulos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container app-main" id="app-main">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-12 rifas light">
+
+
+                <div class="app-title light">
+                    <h1>⚡ Campanhas</h1>
+                    <div class="app-title-desc light">Escolha sua sorte</div>
+                </div>
+                
+                                    <a href="sorteio/%f0%9f%a5%87-fan-160-_%f0%9f%a5%88pop-110i.html">
+                        <div class="card-rifa-destaque light" style="position: relative">
+                            <div class="img-rifa-destaque">
+                                <img src="products/21720846046.png" alt="" srcset="">
+                                <div class="ribbon"><span class="text-color">Destaque</span>
+                                </div>
+                            </div>
+                            <div class="title-rifa-destaque light">
+                                <h1>🥇 FAN 160 |🥈POP 110i</h1>
+                                <p>Dupla chance de ganhar 🤩⏰️🚨</p>
+                                <div style="width: 100%;">
+                                    <span class="badge mt-1 bg-success blink">Adquira já!</span>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </a>
+                
+                
+                                                
+                
+                <div onclick="duvidas()" class="container d-flex duvida" style="">
+                    <div class="row">
+                        <div class="d-flex icone-duvidas">🤷</div>
+                        <div class="col text-duvidas light">
+                            <h6 class="mb-0 font-md f-15">Dúvidas?</h6>
+                            <p class="mb-0  font-sm f-12 text-muted">Fale conosco</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                <div class="perguntas-frequentes pb-2">
+        <div class="app-title">
+            <h1>🤷 Perguntas frequentes</h1>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-sm btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Perguntas frequentes
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">Fazendo login no site e abrindo o Menu Principal, você consegue
+                        consultar suas últimas compras no menu "Minhas compras".
+                        <br><br> *Todos os prêmios são entregues gratuitamente em um raio de 300km de
+                        distância de nossa cidade natal Jequié-Bahia. As demais regiões estará sujeito a
+                        taxa de logistíca.<br><br>
+                        *Posso receber meu prêmio em dinheiro?<br> Sim. Você tem total liberdade de escolher
+                        entre o prêmio e o dinheiro "valores baseados na tabela fipe"<br><br>*Prazo de
+                        entrega 10 dias.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion mt-2" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-sm btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Como envio o comprovante ?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Caso você tenha feito o pagamento via PIX QR Code ou copiando o código, não é
+                        necessário enviar o comprovante, aguardando até 5 minutos após o pagamento, o
+                        sistema irá dar baixa automaticamente, para mais dúvidas entre em contato conosco
+                        pelo whatsapp.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+        <br>
+        <footer class="footer "
+        style="height:auto;background-color: #000;margin-top:0px!important; text-align: center;bottom: -32px;">
+                    <div class="col-md-12 col-12 font-xs"
+                style="color: #fff; background-color:  #000000 ;">
+                <b>Transparência e credibilidade sempre!</b>
+                <br>
+                © Copyright 2024 - Todos os direitos reservados<br>
+                Desenvolvido com
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
+                    viewBox="0 0 100.000000 100.000000" preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#34a772"
+                        stroke="none">
+                        <path d="M387 860 c-38 -30 -43 -77 -18 -151 l21 -62 -36 42 c-61 71 -119 89
+                                    -167 51 -31 -25 -44 -79 -29 -126 8 -28 7 -36 -10 -51 -49 -44 -61 -104 -28
+                                    -146 30 -38 77 -43 151 -18 l62 21 -42 -36 c-71 -61 -89 -119 -51 -167 25 -31
+                                    79 -44 124 -30 29 9 36 7 64 -18 82 -74 185 -25 168 79 l-5 33 53 -54 c30 -30
+                                    75 -64 101 -77 49 -24 164 -42 135 -21 -8 6 -26 11 -40 11 -59 1 -157 62 -211
+                                    132 -25 32 -27 38 -8 22 56 -49 101 -56 142 -24 31 25 44 79 30 124 -9 29 -7
+                                    36 18 64 39 43 47 96 22 130 -31 42 -78 49 -153 23 l-63 -21 42 36 c71 61 89
+                                    119 51 167 -25 31 -79 44 -126 29 -28 -8 -36 -7 -51 10 -44 49 -104 61 -146
+                                    28z m86 -11 c12 -6 34 -23 49 -36 24 -23 29 -24 62 -13 72 24 136 -17 121 -77
+                                    -8 -33 -77 -102 -163 -161 l-62 -44 -50 104 c-27 57 -52 122 -56 145 -5 36 -3
+                                    45 19 67 29 28 47 32 80 15z m-186 -128 c31 -20 86 -83 144 -168 l30 -42 -79
+                                    -40 c-153 -77 -215 -86 -248 -36 -21 32 -13 64 27 110 29 32 30 37 19 70 -15
+                                    44 -5 90 23 110 28 20 46 19 84 -4z m518 -136 c37 -36 31 -70 -22 -127 -23
+                                    -24 -24 -29 -13 -62 24 -72 -17 -136 -77 -121 -33 8 -102 77 -161 163 l-43 61
+                                    73 37 c87 44 164 73 196 74 13 0 34 -11 47 -25z m-296 -173 c77 -153 86 -215
+                                    36 -248 -32 -21 -64 -13 -110 27 -32 29 -37 30 -70 19 -46 -15 -92 -4 -111 26
+                                    -32 48 0 98 125 190 47 35 87 64 88 64 2 0 20 -35 42 -78z" />
+                        <path d="M215 693 c-12 -11 -15 -25 -11 -47 10 -50 24 -52 19 -2 -5 42 -4 46
+                                15 46 12 0 39 -19 62 -42 22 -23 40 -37 40 -31 0 13 -85 93 -99 93 -5 0 -17
+                                -7 -26 -17z" />
+                        <path d="M360 575 c7 -9 15 -13 17 -11 7 7 -7 26 -19 26 -6 0 -6 -6 2 -15z" />
+                        <path d="M780 536 c0 -7 -9 -25 -21 -40 -11 -14 -16 -26 -10 -26 11 0 51 57
+                                    51 73 0 4 -4 7 -10 7 -5 0 -10 -6 -10 -14z" />
+                        <path d="M715 423 c3 -16 9 -45 12 -65 5 -35 3 -38 -18 -38 -16 0 -20 -3 -13
+                                    -10 15 -15 41 -3 47 22 7 24 -14 118 -27 118 -4 0 -5 -12 -1 -27z" />
+                    </g>
+                </svg>
+
+                por
+                <a target="_blank" href="index.html">
+
+                    <span class="text-bg-success badge" style="color: #fff!important; font-size: 12px;">Marcio Premiações</span>
+
+                </a>
+            </div>
+            </footer>
+    </div>
+    <br>
+    <script>
+        const comp = document.getElementById('camp');
+        if (isIOS()) {
+            comp.style.marginTop = '-1px';
+        }
+    </script>
+
+                <script>
+                    if (document.getElementById('telephone')) {
+                        document.getElementById('telephone').addEventListener('input', function(e) {
+                            var aux = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                            e.target.value = !aux[2] ? aux[1] : '(' + aux[1] + ') ' + aux[2] + (aux[3] ? '-' + aux[3] : '');
+                        });
+                    }
+                    if (document.getElementById('telephone1')) {
+                        document.getElementById('telephone1').addEventListener('input', function(e) {
+                            var aux = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                            e.target.value = !aux[2] ? aux[1] : '(' + aux[1] + ') ' + aux[2] + (aux[3] ? '-' + aux[3] : '');
+                        });
+                    }
+
+                    function loading() {
+                        var el = document.getElementById('loadingSystem');
+                        el.classList.toggle("d-none");
+                    }
+                </script>
+                <script src="../cdn.jsdelivr.net/npm/bootstrap%405.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+                </script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+
+<!-- Mirrored from marciopremiacoes.com.br/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Aug 2024 23:21:57 GMT -->
+</html>
